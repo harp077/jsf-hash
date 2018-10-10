@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>        
+        <title><ui:insert name="title"> default </ui:insert></title>
+    </h:head>
+
+    <h:body>
+
+        <p:growl id="growl" life="2000"/>
+
+        <p:layout fullPage="true">
+
+            <p:layoutUnit position="north" size="65" header="#{bundle.AppName}">
+                
+                <h:form id="menuForm">
+
+                    <p:menubar>
+
+                        <p:submenu label="Menu">
+                            <p:menuitem 
+                                value="About" 
+                                onclick="PF('dlg').show()" 
+                                icon="ui-icon-help"/>
+                        </p:submenu>
+                        
+                        <f:facet name="options">
+                            <p:themeSwitcher 
+                                value="#{userSession.skin}"  
+                                id="skinsel">
+                                <f:selectItems 
+                                    value="#{userSession.SKINS}" 
+                                    var="#{userSession.skin}"/>
+                                <p:ajax update="growl"/>
+                            </p:themeSwitcher>
+                            <p:tooltip position="left" value="Skin selection" for="skinsel"/>
+                        </f:facet>
+
+                    </p:menubar>
+
+                </h:form>
+
+                <ui:include src="about.xhtml"/>  
+                
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <ui:insert name="body"/>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="25">
+                <!--<ui:insert name="footer"/>-->
+                <center>
+                    Mail = <A HREF="mailto:harp07@mail.ru"> harp07@mail.ru </A>
+                </center>
+            </p:layoutUnit> 
+
+        </p:layout>
+
+    </h:body>
+
+</html>
