@@ -17,46 +17,48 @@
             <ui:define name="body">
                 <h:form>
                     <p:tabView>
-                        <p:tab title="Text Hash">
+                        <p:tab title="Hash of Text">
                             <p:panel id="idPanelTA" header="input text">
                                 <p:focus context="idPanelTA"/>
-                                <h:panelGrid border="2" columns="2">
+                                <h:panelGrid border="1" columns="1">
                                     <p:inputTextarea
                                         id="inTA" 
-                                        rows="11" 
+                                        rows="5" 
                                         cols="99" 
                                         placeholder="enter text" 
                                         value="#{cdiIndex.hashText}"/>
-                                    <h:panelGroup/>
-                                    <p:commandButton
-                                        update="txthashesid" 
-                                        actionListener="#{cdiIndex.calcTextHashesAll()}" 
-                                        value="Get hashes"/>
-                                    <p:commandButton 
-                                        actionListener="#{cdiIndex.hashes.clear()}" 
-                                        process="@this"  
-                                        update="idPanelTA, txthashesid" 
-                                        value="Clear"> 
-                                        <p:resetInput target="idPanelTA" />
-                                    </p:commandButton>                                   
+                                    <h:panelGroup>
+                                        <p:spacer width="11px"/>
+                                        <p:commandButton
+                                            update="txthashesid" 
+                                            actionListener="#{cdiIndex.calcTextHashesAll()}" 
+                                            value="Get hashes"/>
+                                        <p:spacer width="11px"/>
+                                        <p:commandButton 
+                                            actionListener="#{cdiIndex.hashesList.clear()}" 
+                                            process="@this"  
+                                            update="idPanelTA, txthashesid" 
+                                            value="Clear"> 
+                                            <p:resetInput target="idPanelTA" />
+                                        </p:commandButton>
+                                    </h:panelGroup>
                                 </h:panelGrid>
                                 <p:resizable for="inTA"/>
                             </p:panel>
-                            <p:panel id="txthashesid" header="output hashes">
-                                md2 = #{cdiIndex.hashes.get("md2")}
-                                md5 = #{cdiIndex.hashes.get("md5")}
-                                sha1 = #{cdiIndex.hashes.get("sha1")}
-                                <p:dataList value="#{cdiIndex.hashesList}" var="hm" type="ordered">
-                                    <f:facet name="header">
-                                        Basic
-                                    </f:facet>
-                                    #{hm.type}, #{hm.hash}
-                                </p:dataList>                                
-                            </p:panel>                            
+                            <p:spacer width="11px"/>
+                            <p:dataList id="txthashesid" value="#{cdiIndex.hashesList}" var="hm" type="ordered">
+                                <f:facet name="header">
+                                    output hashes
+                                </f:facet>
+                                ) #{hm.type} = #{hm.hash}
+                            </p:dataList> 
+                            
                         </p:tab>
-                        <p:tab title="File Hash">
+                        
+                        <p:tab title="Hash of File">
 
                         </p:tab>
+                        
                     </p:tabView>
                 </h:form>
 
