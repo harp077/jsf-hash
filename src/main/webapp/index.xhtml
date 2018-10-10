@@ -18,24 +18,48 @@
                 <h:form>
                     <p:tabView>
                         <p:tab title="Text Hash">
-                            <p:panel header="hash of text">
-                                <h:panelGrid columns="1">
+                            <p:panel id="idPanelTA" header="input text">
+                                <p:focus context="idPanelTA"/>
+                                <h:panelGrid border="2" columns="2">
                                     <p:inputTextarea
                                         id="inTA" 
                                         rows="11" 
-                                        cols="55" 
+                                        cols="99" 
                                         placeholder="enter text" 
                                         value="#{cdiIndex.hashText}"/>
-                                    <p:commandButton value="get"/>
-                                    <p:resizable for="inTA"/>
+                                    <h:panelGroup/>
+                                    <p:commandButton
+                                        update="txthashesid" 
+                                        actionListener="#{cdiIndex.calcTextHashesAll()}" 
+                                        value="Get hashes"/>
+                                    <p:commandButton 
+                                        actionListener="#{cdiIndex.hashes.clear()}" 
+                                        process="@this"  
+                                        update="idPanelTA, txthashesid" 
+                                        value="Clear"> 
+                                        <p:resetInput target="idPanelTA" />
+                                    </p:commandButton>                                   
                                 </h:panelGrid>
+                                <p:resizable for="inTA"/>
                             </p:panel>
+                            <p:panel id="txthashesid" header="output hashes">
+                                md2 = #{cdiIndex.hashes.get("md2")}
+                                md5 = #{cdiIndex.hashes.get("md5")}
+                                sha1 = #{cdiIndex.hashes.get("sha1")}
+                                <p:dataList value="#{cdiIndex.hashesList}" var="hm" type="ordered">
+                                    <f:facet name="header">
+                                        Basic
+                                    </f:facet>
+                                    #{hm.type}, #{hm.hash}
+                                </p:dataList>                                
+                            </p:panel>                            
                         </p:tab>
                         <p:tab title="File Hash">
 
                         </p:tab>
                     </p:tabView>
                 </h:form>
+
             </ui:define>
 
         </ui:composition>
