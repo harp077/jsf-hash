@@ -15,52 +15,91 @@
             </ui:define> 
 
             <ui:define name="body">
-                <h:form>
-                    <p:tabView>
-                        <p:tab title="Hash of Text">
+
+                <p:tabView>
+                    
+                    <p:tab title="Hash of Text">
+                        
+                        <h:form id="txtform">
+                            
                             <p:panel id="idPanelTA" header="input text">
                                 <p:focus context="idPanelTA"/>
-                                <h:panelGrid border="1" columns="1">
-                                    <p:inputTextarea
-                                        id="inTA" 
-                                        rows="5" 
-                                        cols="99" 
-                                        placeholder="enter text" 
-                                        value="#{cdiIndex.hashText}"/>
-                                    <h:panelGroup>
-                                        <p:spacer width="11px"/>
-                                        <p:commandButton
-                                            update="txthashesid" 
-                                            actionListener="#{cdiIndex.calcTextHashesAll()}" 
-                                            value="Get hashes"/>
-                                        <p:spacer width="11px"/>
-                                        <p:commandButton 
-                                            actionListener="#{cdiIndex.hashesList.clear()}" 
-                                            process="@this"  
-                                            update="idPanelTA, txthashesid" 
-                                            value="Clear"> 
-                                            <p:resetInput target="idPanelTA" />
-                                        </p:commandButton>
-                                    </h:panelGroup>
-                                </h:panelGrid>
+                                <center>
+                                    <h:panelGrid 
+                                        cellpadding="2" 
+                                        cellspacing="2" 
+                                        border="0" 
+                                        columns="1">
+                                        <p:inputTextarea
+                                            id="inTA" 
+                                            rows="4" 
+                                            cols="99" 
+                                            placeholder="enter text" 
+                                            value="#{cdiIndex.hashText}"/>
+                                        <h:panelGroup>
+                                            <p:spacer width="11px"/>
+                                            <p:commandButton
+                                                update=":growl, txthashesid" 
+                                                actionListener="#{cdiIndex.calcTextHashesAll()}" 
+                                                value="Get hashes"/>
+                                            <p:spacer width="11px"/>
+                                            <p:commandButton 
+                                                actionListener="#{cdiIndex.hashesList.clear()}" 
+                                                process="@this"  
+                                                update="idPanelTA, txthashesid" 
+                                                value="Clear"> 
+                                                <p:resetInput target="idPanelTA" />
+                                                <p:ajax update="idPanelTA" resetValues="true"/>
+                                            </p:commandButton>
+                                        </h:panelGroup>
+                                    </h:panelGrid>
+                                </center>
                                 <p:resizable for="inTA"/>
                             </p:panel>
+                            
                             <p:spacer width="11px"/>
+                            
                             <p:dataList id="txthashesid" value="#{cdiIndex.hashesList}" var="hm" type="ordered">
                                 <f:facet name="header">
                                     output hashes
                                 </f:facet>
-                                ) #{hm.type} = #{hm.hash}
+                                ) <strong>#{hm.type}</strong> = #{hm.hash}
+                                <p:separator/>
                             </p:dataList> 
                             
-                        </p:tab>
+                        </h:form>
                         
-                        <p:tab title="Hash of File">
+                    </p:tab>
 
-                        </p:tab>
+                    <p:tab title="Hash of File">
                         
-                    </p:tabView>
-                </h:form>
+                        <h:form 
+                            id="importForm"  
+                            enctype="multipart/form-data">
+
+                            <h:panelGroup id="display_import">
+                                <p:panelGrid columns="2">
+                                    <p:fileUpload value="#{cdiIndex.file}" mode="simple" />
+                                </p:panelGrid>
+                                <p:commandButton  
+                                    actionListener="#{cdiIndex.upload}" 
+                                    value="Load" 
+                                    ajax="false"/>
+                            </h:panelGroup>
+                            
+                            <p:dataList id="filehashesid" value="#{cdiIndex.hashesList}" var="hm" type="ordered">
+                                <f:facet name="header">
+                                    output hashes
+                                </f:facet>
+                                ) <strong>#{hm.type}</strong> = #{hm.hash}
+                                <p:separator/>
+                            </p:dataList>                                 
+
+                        </h:form>
+
+                    </p:tab>
+
+                </p:tabView>
 
             </ui:define>
 
