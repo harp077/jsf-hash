@@ -9,10 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FileUtils;
+import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 import org.springframework.web.context.annotation.RequestScope;
 
@@ -126,6 +128,14 @@ public class CdiIndex {
             System.out.println(ex.toString());
             cdiMess.addMessage("IO-exception !","io-exception",FacesMessage.SEVERITY_INFO);
         }
+    }  
+    
+    public void handleFileUpload(FileUploadEvent event) {
+        this.file=event.getFile();
+        if (file.getSize()>0L) {
+            cdiMess.addMessage("Succesful"+event.getFile().getFileName()+" is uploaded !","load-file",FacesMessage.SEVERITY_INFO);
+            upload();
+        }        
     }    
     
     public String getHashText() {

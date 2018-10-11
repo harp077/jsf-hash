@@ -26,14 +26,14 @@
                                 <p:focus context="idPanelTA"/>
                                 <center>
                                     <h:panelGroup>
-                                        
+
                                         <p:inputTextarea autoResize="false" 
-                                            id="inTA" 
-                                            rows="4" 
-                                            cols="99" 
-                                            placeholder="enter text please" 
-                                            value="#{cdiIndex.hashText}"/>
-                                        
+                                                         id="inTA" 
+                                                         rows="4" 
+                                                         cols="99" 
+                                                         placeholder="enter text please" 
+                                                         value="#{cdiIndex.hashText}"/>
+
                                         <h:panelGrid columns="2">
                                             <p:commandButton
                                                 update=":growl, txthashesid" 
@@ -49,10 +49,10 @@
                                                 <p:ajax update="idPanelTA" resetValues="true"/>
                                             </p:commandButton>
                                         </h:panelGrid>
-                                        
+
                                     </h:panelGroup>
                                 </center>
-                                
+
                             </p:panel>
 
                             <p:spacer width="11px"/>
@@ -78,13 +78,25 @@
                                 <center>
                                     <h:panelGroup id="display_import">
                                         <p:panelGrid columns="2">
+                                            <p:fileUpload 
+                                                dragDropSupport="false" 
+                                                fileUploadListener="#{cdiIndex.handleFileUpload}" 
+                                                update=":growl,idPanelFile, filehashesid, idFileName" 
+                                                sizeLimit="5000000" 
+                                                fileLimit="1" 
+                                                value="#{cdiIndex.file}" 
+                                                mode="advanced" />  
+                                            <ui:remove>
                                             <p:fileUpload value="#{cdiIndex.file}" mode="simple" />
+                                            </ui:remove>
                                         </p:panelGrid>
+                                        <ui:remove>
                                         <p:commandButton  
                                             actionListener="#{cdiIndex.upload}" 
                                             value="Get Hash" 
                                             ajax="false"/>
                                         <p:spacer width="11px"/>
+                                        </ui:remove>
                                         <p:commandButton 
                                             actionListener="#{cdiIndex.fileHashesList.clear()}" 
                                             process="@this"  
