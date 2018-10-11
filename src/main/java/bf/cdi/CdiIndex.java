@@ -7,6 +7,7 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +33,8 @@ public class CdiIndex {
 
     private String hashText;
     //private Map<String, String> hashes = new HashMap<>();
-    private List<HashDataModel> hashesList = new ArrayList<>();
+    private List<HashDataModel> textHashesList = new ArrayList<>();
+    private List<HashDataModel> fileHashesList = new ArrayList<>();
     private HashDataModel hdm;
     private UploadedFile file;
     
@@ -55,12 +57,13 @@ public class CdiIndex {
 
     @PostConstruct
     public void afterBirn() {
-        hashesList.clear();
+        textHashesList.clear();
+        fileHashesList.clear();
     }
 
     public void calcTextHashesAll() {
         if (!hashText.isEmpty()) {
-            hashesList.clear();
+            textHashesList.clear();
             for (String tip: TYPES) {
                 hdm=new HashDataModel();
                 hdm.setType(tip);
@@ -81,7 +84,7 @@ public class CdiIndex {
                     case "murmur3_32": hdm.setHash(Hashing.murmur3_32().hashString(hashText, Charsets.UTF_8).toString()); break;
                     case "sipHash24": hdm.setHash(Hashing.sipHash24().hashString(hashText, Charsets.UTF_8).toString()); break;
                 }
-                hashesList.add(hdm);
+                textHashesList.add(hdm);
             }
             /*hashes.put("md2", DigestUtils.md2Hex(hashText));
             //////////  Hashing.crc32().hashString(buf, Charsets.UTF_8).toString()
@@ -97,7 +100,7 @@ public class CdiIndex {
             return;
         }
         try (InputStream is = file.getInputstream()){
-            hashesList.clear();
+            fileHashesList.clear();
             for (String tip: TYPES) {
                 hdm=new HashDataModel();
                 hdm.setType(tip);
@@ -117,7 +120,7 @@ public class CdiIndex {
                     case "murmur3_32": hdm.setHash(Hashing.murmur3_32().hashString(hashText, Charsets.UTF_8).toString()); break;
                     case "sipHash24": hdm.setHash(Hashing.sipHash24().hashString(hashText, Charsets.UTF_8).toString()); break;*/
                 }
-                hashesList.add(hdm);
+                fileHashesList.add(hdm);
             }
         }  catch (IOException ex) {}
     }    
@@ -130,16 +133,20 @@ public class CdiIndex {
         this.hashText = hashText;
     }
 
-    public List<HashDataModel> getHashesList() {
-        return hashesList;
-    }
-
     public UploadedFile getFile() {
         return file;
     }
 
     public void setFile(UploadedFile file) {
         this.file = file;
+    }
+
+    public List<HashDataModel> getTextHashesList() {
+        return textHashesList;
+    }
+
+    public List<HashDataModel> getFileHashesList() {
+        return fileHashesList;
     }
     
 }

@@ -16,78 +16,91 @@
 
             <ui:define name="body">
 
-                <p:tabView>
-                    
+                <p:tabView activeIndex="1">
+
                     <p:tab title="Hash of Text">
-                        
+
                         <h:form id="txtform">
-                            
+
                             <p:panel id="idPanelTA" header="input text">
                                 <p:focus context="idPanelTA"/>
                                 <center>
-                                    <h:panelGrid 
-                                        cellpadding="2" 
-                                        cellspacing="2" 
-                                        border="0" 
-                                        columns="1">
-                                        <p:inputTextarea
+                                    <h:panelGroup>
+                                        
+                                        <p:inputTextarea autoResize="false" 
                                             id="inTA" 
                                             rows="4" 
                                             cols="99" 
-                                            placeholder="enter text" 
+                                            placeholder="enter text please" 
                                             value="#{cdiIndex.hashText}"/>
-                                        <h:panelGroup>
-                                            <p:spacer width="11px"/>
+                                        
+                                        <h:panelGrid columns="2">
                                             <p:commandButton
                                                 update=":growl, txthashesid" 
                                                 actionListener="#{cdiIndex.calcTextHashesAll()}" 
                                                 value="Get hashes"/>
-                                            <p:spacer width="11px"/>
+
                                             <p:commandButton 
-                                                actionListener="#{cdiIndex.hashesList.clear()}" 
+                                                actionListener="#{cdiIndex.textHashesList.clear()}" 
                                                 process="@this"  
                                                 update="idPanelTA, txthashesid" 
                                                 value="Clear"> 
                                                 <p:resetInput target="idPanelTA" />
                                                 <p:ajax update="idPanelTA" resetValues="true"/>
                                             </p:commandButton>
-                                        </h:panelGroup>
-                                    </h:panelGrid>
+                                        </h:panelGrid>
+                                        
+                                    </h:panelGroup>
                                 </center>
-                                <p:resizable for="inTA"/>
+                                
                             </p:panel>
-                            
+
                             <p:spacer width="11px"/>
-                            
-                            <p:dataList id="txthashesid" value="#{cdiIndex.hashesList}" var="hm" type="ordered">
+
+                            <p:dataList id="txthashesid" value="#{cdiIndex.textHashesList}" var="hm" type="ordered">
                                 <f:facet name="header">
                                     output hashes
                                 </f:facet>
                                 ) <strong>#{hm.type}</strong> = #{hm.hash}
                                 <p:separator/>
                             </p:dataList> 
-                            
+
                         </h:form>
-                        
+
                     </p:tab>
 
                     <p:tab title="Hash of File">
-                        
-                        <h:form 
-                            id="importForm"  
-                            enctype="multipart/form-data">
 
-                            <h:panelGroup id="display_import">
-                                <p:panelGrid columns="2">
-                                    <p:fileUpload value="#{cdiIndex.file}" mode="simple" />
-                                </p:panelGrid>
-                                <p:commandButton  
-                                    actionListener="#{cdiIndex.upload}" 
-                                    value="Load" 
-                                    ajax="false"/>
-                            </h:panelGroup>
-                            
-                            <p:dataList id="filehashesid" value="#{cdiIndex.hashesList}" var="hm" type="ordered">
+                        <h:form id="importForm"  
+                                enctype="multipart/form-data">
+
+                            <p:panel id="idPanelFile" header="input file">
+                                <center>
+                                    <h:panelGroup id="display_import">
+                                        <p:panelGrid columns="2">
+                                            <p:fileUpload value="#{cdiIndex.file}" mode="simple" />
+                                        </p:panelGrid>
+                                        <p:commandButton  
+                                            actionListener="#{cdiIndex.upload}" 
+                                            value="Get Hash" 
+                                            ajax="false"/>
+                                        <p:spacer width="11px"/>
+                                        <p:commandButton 
+                                            actionListener="#{cdiIndex.fileHashesList.clear()}" 
+                                            process="@this"  
+                                            update="idPanelFile, filehashesid, idFileName" 
+                                            value="Clear"> 
+                                            <p:resetInput target="idPanelFile" />
+                                            <p:ajax update="idPanelFile" resetValues="true"/>
+                                        </p:commandButton>                                        
+                                    </h:panelGroup>
+                                </center>
+                            </p:panel>
+
+                            <p:separator/>
+                            <p:outputLabel id="idFileName" value='file = #{cdiIndex.file.fileName}'/>
+                            <p:separator/>
+                            <p:dataList id="filehashesid" value="#{cdiIndex.fileHashesList}" var="hm" type="ordered">
                                 <f:facet name="header">
                                     output hashes
                                 </f:facet>
