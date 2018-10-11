@@ -78,14 +78,21 @@
                                 <center>
                                     <h:panelGroup id="display_import">
                                         <p:panelGrid columns="2">
-                                            <p:fileUpload 
+                                            <p:fileUpload  
+                                                auto="false"
+                                                cancelLabel="cancel"  
+                                                label="select" 
+                                                invalidSizeMessage="file size must be less 5mb" 
+                                                uploadLabel="upload" 
                                                 dragDropSupport="false" 
                                                 fileUploadListener="#{cdiIndex.handleFileUpload}" 
                                                 update=":growl,idPanelFile, filehashesid, idFileName" 
                                                 sizeLimit="5000000" 
                                                 fileLimit="1" 
                                                 value="#{cdiIndex.file}" 
-                                                mode="advanced" />  
+                                                mode="advanced"> 
+                                                <f:facet name="header">xxx</f:facet>
+                                            </p:fileUpload>
                                             <ui:remove>
                                             <p:fileUpload value="#{cdiIndex.file}" mode="simple" />
                                             </ui:remove>
