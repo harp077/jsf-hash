@@ -11,8 +11,8 @@
         <p:dialog 
             header="About" 
             widgetVar="dlg" 
-            width="500" 
-            height="335" 
+            width="400" 
+            height="300" 
             modal="true" 
             appendTo="@(body)">
             <h:form id="aboutForm"> 
@@ -21,9 +21,9 @@
                     <p:spacer/>
                     <p:graphicImage 
                         style="align-content: center; vertical-align: middle" 
-                        width="54" 
-                        height="35" 
-                        value="/resources/img/jennom.png"/>
+                        width="122" 
+                        height="72" 
+                        value="/resources/img/thehash_245x143.png"/>
                     <p:spacer/>
                     <!--<p:separator title="about" style=" color: aquamarine"/>-->
                 </center>
@@ -32,22 +32,10 @@
                     title="about" 
                     style=" text-align: left"  
                     value=
-                    "JENNOM - Java Enterprise Network Nodes Monitor, project is free, portable, 
-                    cross-platform and 100%-pure java. ICMP and DNS used to check the nodes. 
-                    At first Jennom use ICMP to check nodes, if it is unavailable, 
-                    it tries to check with TCP/echo. In addition, Jennom calculate loss packets
-                    and all sending packets - see please 'Loss/All' column. Support filtering by 
-                    different fields, export data to PDF/XML/CSV and CSV-import.
-                    Use standart OS ICMP packet-size - Linux=64 bytes, Windows=32 bytes.
-                    When any node change state, Jennom write message to local DB,  
-                    send message to remote syslog-server and can send email for you. 
-                    Only state changes will be fixed ! Support both IPv4 and IPv6.
-                    Support monitoring by IP-address and DNS-name.
-                    For DNS-name also checked DNS-service.
-                    Successfully tested in Windows and Linux for more 200 nodes.
+                    "JSF-HASH - online file/text hash calculator.
+                    Successfully tested in Windows and Linux.
                     Developed by Java EE + Spring stack technologies: 
-                    Spring core (CDI + ORM + TX + WEB), JSF + PrimeFaces, 
-                    JPA, Apache Shiro security framework and 
+                    Spring core (CDI + WEB), JSF + PrimeFaces, 
                     Apache Tomcat server 8.0.xx.
                     Need JRE 1.8.">
                 </h:outputText>
@@ -57,7 +45,7 @@
                     title="feedback" 
                     style=" text-align: left"  
                     value=
-                    "FeedBack: Mail = harp07@mail.ru, Home = http://jennom.sf.net.                    
+                    "FeedBack: Mail = harp07@mail.ru,                   
                     Roman Koldaev, Saratov city, Russia.">
                 </h:outputText>  
                 
