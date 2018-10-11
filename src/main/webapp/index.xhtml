@@ -78,7 +78,7 @@
                                 <center>
                                     <h:panelGroup id="display_import">
                                         <p:panelGrid columns="2">
-                                            <p:fileUpload  
+                                            <p:fileUpload 
                                                 auto="false"
                                                 cancelLabel="cancel"  
                                                 label="select" 
@@ -90,9 +90,7 @@
                                                 sizeLimit="5000000" 
                                                 fileLimit="1" 
                                                 value="#{cdiIndex.file}" 
-                                                mode="advanced"> 
-                                                <f:facet name="header">xxx</f:facet>
-                                            </p:fileUpload>
+                                                mode="advanced"/> 
                                             <ui:remove>
                                             <p:fileUpload value="#{cdiIndex.file}" mode="simple" />
                                             </ui:remove>
