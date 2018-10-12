@@ -14,6 +14,7 @@
         <spring-ver>4.3.19.RELEASE</spring-ver>
         <jsf-ver>2.2.18</jsf-ver>
         <pf-ver>6.1</pf-ver>
+        <of-ver>1.14.1</of-ver>
         <servlet-api-ver>3.1.0</servlet-api-ver>
         <el-api-ver>3.0.0</el-api-ver>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -47,7 +48,13 @@
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
             <version>1</version>
-        </dependency>  
+        </dependency> 
+        
+        <dependency>
+            <groupId>org.omnifaces</groupId>
+            <artifactId>omnifaces</artifactId>
+            <version>${of-ver}</version>
+        </dependency>          
         
         <dependency>
             <groupId>org.primefaces</groupId>

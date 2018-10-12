@@ -27,10 +27,16 @@
 
                         <p:submenu label="Menu">
                             <p:menuitem 
+                                value="Info" 
+                                onclick="PF('infodlg').show()" 
+                                icon="ui-icon-circle-zoomin"/>                               
+                            <p:menuitem 
                                 value="About" 
-                                onclick="PF('dlg').show()" 
+                                onclick="PF('aboutdlg').show()" 
                                 icon="ui-icon-help"/>
                         </p:submenu>
+                        
+                        <p:menuitem url="http://mail.ru" actionListener="#{session.invalidate()}" value="Quit" icon="ui-icon-power"/>
                         
                         <f:facet name="options">
                             <p:themeSwitcher 
@@ -48,7 +54,8 @@
 
                 </h:form>
 
-                <ui:include src="about.xhtml"/>  
+                <ui:include src="about.xhtml"/>
+                <ui:include src="info.xhtml"/>
                 
             </p:layoutUnit>
 
