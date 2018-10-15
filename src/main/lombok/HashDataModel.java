@@ -1,6 +1,5 @@
 
-package bf.model;
-
+// for delombok !!
 import lombok.Data;
 
 @Data
