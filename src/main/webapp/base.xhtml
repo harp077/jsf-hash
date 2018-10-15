@@ -26,17 +26,21 @@
                     <p:menubar>
 
                         <p:submenu label="Menu">
+                            <ui:remove>
                             <p:menuitem 
-                                value="Info" 
+                                value="Client Info" 
                                 onclick="PF('infodlg').show()" 
-                                icon="ui-icon-circle-zoomin"/>                               
+                                icon="ui-icon-circle-zoomin"/>  
+                            </ui:remove>
                             <p:menuitem 
                                 value="About" 
                                 onclick="PF('aboutdlg').show()" 
                                 icon="ui-icon-help"/>
                         </p:submenu>
                         
-                        <p:menuitem url="http://mail.ru" actionListener="#{session.invalidate()}" value="Quit" icon="ui-icon-power"/>
+                        <ui:remove>
+                            <p:menuitem url="http://mail.ru" actionListener="#{session.invalidate()}" value="Quit" icon="ui-icon-power"/>
+                        </ui:remove>
                         
                         <f:facet name="options">
                             <p:themeSwitcher 
@@ -66,7 +70,7 @@
             <p:layoutUnit position="south" size="25">
                 <!--<ui:insert name="footer"/>-->
                 <center>
-                    Mail = <A HREF="mailto:harp07@mail.ru"> harp07@mail.ru </A>
+                    Build 15-10-18, Roman Koldaev, Saratov city, Russia. Mail = <A HREF="mailto:harp07@mail.ru"> harp07@mail.ru </A>
                 </center>
             </p:layoutUnit> 
 

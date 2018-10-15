@@ -69,7 +69,7 @@ public class UserSession { //implements Serializable {
     
     @PostConstruct
     public void afterBirn() {
-        if (skin==null) skin = "hot-sneaks";
+        if (skin==null) skin = "excite-bike";
         lang = FacesContext.getCurrentInstance().getExternalContext().getRequestLocale().toString();
         if (!lang.equals("ru") && !lang.equals("en")) lang = "en";
         

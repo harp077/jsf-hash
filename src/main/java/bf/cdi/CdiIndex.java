@@ -49,7 +49,8 @@ public class CdiIndex {
         "farmHashFingerprint64",
         "murmur3_128",
         "murmur3_32",
-        "sipHash24"
+        "sipHash24",
+        "goodFastHash32"
     };
 
     @PostConstruct
@@ -73,6 +74,7 @@ public class CdiIndex {
                     case "sha384": hdm.setHash(DigestUtils.sha384Hex(hashText)); break;
                     case "sha512": hdm.setHash(DigestUtils.sha512Hex(hashText)); break;
                     //case "crc32": hdm.setHash(Hex.encodeHexString(Hashing.crc32().hashUnencodedChars(hashText).toString().getBytes())); break;
+                    //case "crc32": hdm.setHash(Hashing.crc32().hashBytes((getBytesUtf8(hashText))).toString()); break;
                     case "crc32": hdm.setHash(Hashing.crc32().hashString(hashText, Charsets.UTF_8).toString()); break;
                     case "crc32c": hdm.setHash(Hashing.crc32c().hashString(hashText, Charsets.UTF_8).toString()); break;
                     case "adler32": hdm.setHash(Hashing.adler32().hashString(hashText, Charsets.UTF_8).toString()); break;
@@ -80,6 +82,7 @@ public class CdiIndex {
                     case "murmur3_128": hdm.setHash(Hashing.murmur3_128().hashString(hashText, Charsets.UTF_8).toString()); break;
                     case "murmur3_32": hdm.setHash(Hashing.murmur3_32().hashString(hashText, Charsets.UTF_8).toString()); break;
                     case "sipHash24": hdm.setHash(Hashing.sipHash24().hashString(hashText, Charsets.UTF_8).toString()); break;
+                    case "goodFastHash32": hdm.setHash(Hashing.goodFastHash(32).hashString(hashText, Charsets.UTF_8).toString()); break;
                 }
                 textHashesList.add(hdm);
             }
@@ -118,6 +121,7 @@ public class CdiIndex {
                     case "murmur3_128": hdm.setHash(com.google.common.io.Files.hash(targetFile, Hashing.murmur3_128()).toString()); break;
                     case "murmur3_32": hdm.setHash(com.google.common.io.Files.hash(targetFile, Hashing.murmur3_32()).toString()); break;
                     case "sipHash24": hdm.setHash(com.google.common.io.Files.hash(targetFile, Hashing.sipHash24()).toString()); break;
+                    case "goodFastHash32": hdm.setHash(com.google.common.io.Files.hash(targetFile, Hashing.goodFastHash(32)).toString()); break;
                 }
                 fileHashesList.add(hdm);
             }
