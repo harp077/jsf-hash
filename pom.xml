@@ -11,7 +11,7 @@
     <packaging>war</packaging>
 
     <properties>
-        <spring-ver>4.3.19.RELEASE</spring-ver>
+        <spring-ver>4.3.20.RELEASE</spring-ver>
         <jsf-ver>2.2.18</jsf-ver>
         <pf-ver>6.1</pf-ver>
         <of-ver>1.14.1</of-ver>
@@ -61,13 +61,13 @@
             <artifactId>primefaces</artifactId>
             <version>${pf-ver}</version>
         </dependency>   
-
+        <!--
         <dependency>
             <groupId>org.primefaces.themes</groupId>
             <artifactId>all-themes</artifactId>
             <version>1.0.10</version>
         </dependency>          
-
+        -->
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>

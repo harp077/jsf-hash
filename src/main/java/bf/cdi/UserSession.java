@@ -26,11 +26,11 @@ public class UserSession { //implements Serializable {
     }; 
     
     private final String [] SKINS = {
-        "afterdark", 
+        /*"afterdark", 
         "afternoon", 
-        "afterwork", 
+        "afterwork", */
         "aristo", 
-        "black-tie", 
+        /*"black-tie", 
         "blitzer", 
         "bluesky", 
         "bootstrap", 
@@ -49,8 +49,8 @@ public class UserSession { //implements Serializable {
         "humanity", 
         "le-frog", 
         "midnight", 
-        "mint-choc", 
-        "omega", 
+        "mint-choc", */
+        "omega"/*, 
         "overcast", 
         "pepper-grinder", 
         "redmond", 
@@ -64,12 +64,12 @@ public class UserSession { //implements Serializable {
         "trontastic", 
         "ui-darkness", 
         "ui-lightness", 
-        "vader"
+        "vader"*/
     };
     
     @PostConstruct
     public void afterBirn() {
-        if (skin==null) skin = "excite-bike";
+        if (skin==null) skin = "omega";
         lang = FacesContext.getCurrentInstance().getExternalContext().getRequestLocale().toString();
         if (!lang.equals("ru") && !lang.equals("en")) lang = "en";
         
