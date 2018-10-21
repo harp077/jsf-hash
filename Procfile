@@ -1,3 +1,3 @@
-web: java $JAVA_OPTS -cp target/classes:target/dependency/* jsf-hash
+web: java -jar target/dependency/webapp-runner-8.0.52.0.jar target/jsf-hash.war
 
 
