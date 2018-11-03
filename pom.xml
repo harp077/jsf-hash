@@ -117,8 +117,14 @@
             <artifactId>webapp-runner</artifactId>
             <version>8.0.52.0</version>
             <scope>provided</scope>
-        </dependency>   
-                
+        </dependency>  
+        <!--
+        <dependency>
+            <groupId>rusv</groupId>
+            <artifactId>agafua-syslog</artifactId>
+            <version>0.4</version>  
+        </dependency>          
+        -->       
     </dependencies>   
 
     <build>
@@ -126,6 +132,42 @@
         <finalName>jsf-hash</finalName>
 
         <plugins>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <id>need-01</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <configuration>
+                            <groupId>org.primefaces.themes</groupId>
+                            <artifactId>all-themes</artifactId>
+                            <version>1.0.10</version>
+                            <packaging>jar</packaging>
+                            <file>${basedir}/lib/all-themes-1.0.10.jar</file>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>need-02</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <configuration>
+                            <groupId>rusv</groupId>
+                            <artifactId>agafua-syslog</artifactId>
+                            <version>0.4</version>
+                            <packaging>jar</packaging>
+                            <file>${basedir}/lib/agafua-syslog-0.4.jar</file>
+                        </configuration>
+                    </execution>                    
+                </executions>
+            </plugin>            
 
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -143,6 +185,7 @@
                 <version>2.5</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <!--<packagingIncludes>${basedir}/lib/*.jar</packagingIncludes>-->
                 </configuration>
             </plugin> 
             
@@ -159,7 +202,9 @@
                 <executions>
                     <execution>
                         <phase>package</phase>
-                        <goals><goal>copy-dependencies</goal></goals>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
                         <configuration>
                             <includeArtifactIds>webapp-runner</includeArtifactIds>
                         </configuration>
