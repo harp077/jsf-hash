@@ -11,7 +11,7 @@
     <packaging>war</packaging>
 
     <properties>
-        <spring-ver>4.3.20.RELEASE</spring-ver>
+        <spring-ver>6.1.21</spring-ver>
         <jsf-ver>2.2.18</jsf-ver>
         <pf-ver>6.1</pf-ver>
         <of-ver>1.14.1</of-ver>
