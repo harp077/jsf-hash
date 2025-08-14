@@ -13,7 +13,7 @@
     <properties>
         <spring-ver>6.1.21</spring-ver>
         <jsf-ver>2.2.18</jsf-ver>
-        <pf-ver>6.1</pf-ver>
+        <pf-ver>8.0</pf-ver>
         <of-ver>1.14.1</of-ver>
         <servlet-api-ver>3.1.0</servlet-api-ver>
         <el-api-ver>3.0.0</el-api-ver>
